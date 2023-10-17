@@ -64,7 +64,20 @@ def result(board, action):
     """
     Returns the board that results from making move (i, j) on the board.
     """
-    raise NotImplementedError
+    #On vérifie que le coup est possible
+    if action not in actions(board):
+        raise Exception("Invalid action")
+
+    #On récupère le joueur qui doit jouer
+    current_player = player(board)
+
+    #On copie le board
+    board_copy = [row[:] for row in board]
+
+    #On joue le coup
+    board_copy[action[0]][action[1]] = current_player
+
+    return board_copy
 
 
 def winner(board):
